@@ -22,8 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "dot_separator": MessageLookupByLibrary.simpleMessage("•"),
         "home_account_tab_label":
             MessageLookupByLibrary.simpleMessage("Tài khoản"),
+        "home_latest_title": MessageLookupByLibrary.simpleMessage("Mới nhất"),
         "home_movie_tab_label": MessageLookupByLibrary.simpleMessage("Movie"),
         "home_now_playing_title":
             MessageLookupByLibrary.simpleMessage("Now playing"),
@@ -35,9 +37,41 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Cài đặt"),
         "home_television_tab_label":
             MessageLookupByLibrary.simpleMessage("Television"),
+        "home_title": MessageLookupByLibrary.simpleMessage("movie"),
         "home_top_rated_title":
             MessageLookupByLibrary.simpleMessage("Top rated"),
         "home_upcoming_title": MessageLookupByLibrary.simpleMessage("Upcoming"),
-        "home_view_all_action": MessageLookupByLibrary.simpleMessage("View all")
+        "home_view_all_action":
+            MessageLookupByLibrary.simpleMessage("View all"),
+        "movie_detail_casts_title":
+            MessageLookupByLibrary.simpleMessage("Diễn viên"),
+        "movie_detail_genre_title":
+            MessageLookupByLibrary.simpleMessage("Thể loại"),
+        "movie_detail_home_learn_more_action":
+            MessageLookupByLibrary.simpleMessage("Tìm hiểu thêm"),
+        "movie_detail_home_learn_more_message":
+            MessageLookupByLibrary.simpleMessage(
+                "Bạn có thể xem thêm thông tin. "),
+        "movie_detail_less": MessageLookupByLibrary.simpleMessage("Bớt"),
+        "movie_detail_more_information_title":
+            MessageLookupByLibrary.simpleMessage("Thông tin thêm"),
+        "movie_detail_overview_title":
+            MessageLookupByLibrary.simpleMessage("Tổng quan"),
+        "movie_detail_similar_list_title":
+            MessageLookupByLibrary.simpleMessage("Phim tương tự"),
+        "movie_detail_subtitles":
+            MessageLookupByLibrary.simpleMessage("Phụ đề"),
+        "movie_detail_unavailable_url_message":
+            MessageLookupByLibrary.simpleMessage("Trang chủ không khả dụng"),
+        "movie_detail_view_more":
+            MessageLookupByLibrary.simpleMessage("Xem thêm"),
+        "network_image_error":
+            MessageLookupByLibrary.simpleMessage("Không thể load ảnh"),
+        "network_image_loaded_url":
+            MessageLookupByLibrary.simpleMessage("Tải xong"),
+        "network_image_loading_prefix":
+            MessageLookupByLibrary.simpleMessage("tải xong"),
+        "short_hour": MessageLookupByLibrary.simpleMessage("giờ"),
+        "short_minute": MessageLookupByLibrary.simpleMessage("phút")
       };
 }

@@ -1,46 +1,23 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_movie_db/data/api/movie_images/movie_images_response.dart';
 
 class MovieImages extends Equatable {
-  static const empty = MovieImages();
-
-  final int id;
-  final List<MovieImagesBackdrop> backdrops;
-  final List<MovieImagesPoster> posters;
-
   const MovieImages({
     this.id = 0,
     this.backdrops = const [],
     this.posters = const [],
   });
 
-  factory MovieImages.fromResponse(MovieImagesResponse response) {
-    return MovieImages(
-      id: response.id ?? 0,
-      backdrops: response.backdrops
-              ?.map((e) => MovieImagesBackdrop.fromResponse(e))
-              .toList() ??
-          [],
-      posters: response.posters
-              ?.map((e) => MovieImagesPoster.fromResponse(e))
-              .toList() ??
-          [],
-    );
-  }
+  static const empty = MovieImages();
+
+  final int id;
+  final List<MovieImagesBackdrop> backdrops;
+  final List<MovieImagesPoster> posters;
 
   @override
   List<Object?> get props => [id, backdrops, posters];
 }
 
 class MovieImagesBackdrop extends Equatable {
-  final double aspectRatio;
-  final String filePath;
-  final int height;
-  final String iso6391;
-  final int voteAverage;
-  final int voteCount;
-  final int width;
-
   const MovieImagesBackdrop({
     this.aspectRatio = 0.0,
     this.filePath = '',
@@ -51,19 +28,13 @@ class MovieImagesBackdrop extends Equatable {
     this.width = 0,
   });
 
-  factory MovieImagesBackdrop.fromResponse(
-    MovieImagesBackdropResponse response,
-  ) {
-    return MovieImagesBackdrop(
-      aspectRatio: response.aspectRatio ?? 0.0,
-      filePath: response.filePath ?? '',
-      height: response.height ?? 0,
-      iso6391: response.iso6391 ?? '',
-      voteAverage: response.voteAverage ?? 0,
-      voteCount: response.voteCount ?? 0,
-      width: response.width ?? 0,
-    );
-  }
+  final double aspectRatio;
+  final String filePath;
+  final int height;
+  final String iso6391;
+  final double voteAverage;
+  final int voteCount;
+  final int width;
 
   @override
   List<Object?> get props =>
@@ -71,14 +42,6 @@ class MovieImagesBackdrop extends Equatable {
 }
 
 class MovieImagesPoster extends Equatable {
-  final double aspectRatio;
-  final String filePath;
-  final int height;
-  final String iso6391;
-  final int voteAverage;
-  final int voteCount;
-  final int width;
-
   const MovieImagesPoster({
     this.aspectRatio = 0.0,
     this.filePath = '',
@@ -89,17 +52,13 @@ class MovieImagesPoster extends Equatable {
     this.width = 0,
   });
 
-  factory MovieImagesPoster.fromResponse(MovieImagesPosterResponse response) {
-    return MovieImagesPoster(
-      aspectRatio: response.aspectRatio ?? 0.0,
-      filePath: response.filePath ?? '',
-      height: response.height ?? 0,
-      iso6391: response.iso6391 ?? '',
-      voteAverage: response.voteAverage ?? 0,
-      voteCount: response.voteCount ?? 0,
-      width: response.width ?? 0,
-    );
-  }
+  final double aspectRatio;
+  final String filePath;
+  final int height;
+  final String iso6391;
+  final double voteAverage;
+  final int voteCount;
+  final int width;
 
   @override
   List<Object?> get props =>

@@ -52,7 +52,7 @@ Map<String, dynamic> _$MovieDetailResponseToJson(
       'adult': instance.adult,
       'backdrop_path': instance.backdropPath,
       'budget': instance.budget,
-      'genres': instance.genres,
+      'genres': instance.genres?.map((e) => e.toJson()).toList(),
       'homepage': instance.homepage,
       'id': instance.id,
       'imdb_id': instance.imdbId,
@@ -61,12 +61,15 @@ Map<String, dynamic> _$MovieDetailResponseToJson(
       'overview': instance.overview,
       'popularity': instance.popularity,
       'poster_path': instance.posterPath,
-      'production_companies': instance.productionCompanies,
-      'production_countries': instance.productionCountries,
+      'production_companies':
+          instance.productionCompanies?.map((e) => e.toJson()).toList(),
+      'production_countries':
+          instance.productionCountries?.map((e) => e.toJson()).toList(),
       'release_date': instance.releaseDate,
       'revenue': instance.revenue,
       'runtime': instance.runtime,
-      'spoken_languages': instance.spokenLanguages,
+      'spoken_languages':
+          instance.spokenLanguages?.map((e) => e.toJson()).toList(),
       'status': instance.status,
       'tagline': instance.tagline,
       'title': instance.title,
@@ -126,6 +129,7 @@ MovieDetailSpokenLanguageResponse _$MovieDetailSpokenLanguageResponseFromJson(
     MovieDetailSpokenLanguageResponse(
       ios6391: json['iso_639_1'] as String?,
       name: json['name'] as String?,
+      englishName: json['english_name'] as String?,
     );
 
 Map<String, dynamic> _$MovieDetailSpokenLanguageResponseToJson(
@@ -133,4 +137,5 @@ Map<String, dynamic> _$MovieDetailSpokenLanguageResponseToJson(
     <String, dynamic>{
       'iso_639_1': instance.ios6391,
       'name': instance.name,
+      'english_name': instance.englishName,
     };

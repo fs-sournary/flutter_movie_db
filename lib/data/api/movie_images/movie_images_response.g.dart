@@ -23,8 +23,8 @@ Map<String, dynamic> _$MovieImagesResponseToJson(
         MovieImagesResponse instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'backdrops': instance.backdrops,
-      'posters': instance.posters,
+      'backdrops': instance.backdrops?.map((e) => e.toJson()).toList(),
+      'posters': instance.posters?.map((e) => e.toJson()).toList(),
     };
 
 MovieImagesBackdropResponse _$MovieImagesBackdropResponseFromJson(
@@ -34,7 +34,7 @@ MovieImagesBackdropResponse _$MovieImagesBackdropResponseFromJson(
       filePath: json['file_path'] as String?,
       height: json['height'] as int?,
       iso6391: json['iso_639_1'] as String?,
-      voteAverage: json['vote_average'] as int?,
+      voteAverage: (json['vote_average'] as num?)?.toDouble(),
       voteCount: json['vote_count'] as int?,
       width: json['width'] as int?,
     );
@@ -58,7 +58,7 @@ MovieImagesPosterResponse _$MovieImagesPosterResponseFromJson(
       filePath: json['file_path'] as String?,
       height: json['height'] as int?,
       iso6391: json['iso_639_1'] as String?,
-      voteAverage: json['vote_average'] as int?,
+      voteAverage: (json['vote_average'] as num?)?.toDouble(),
       voteCount: json['vote_count'] as int?,
       width: json['width'] as int?,
     );

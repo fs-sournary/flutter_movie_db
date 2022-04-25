@@ -22,8 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "dot_separator": MessageLookupByLibrary.simpleMessage("•"),
         "home_account_tab_label":
             MessageLookupByLibrary.simpleMessage("Account"),
+        "home_latest_title": MessageLookupByLibrary.simpleMessage("Latest"),
         "home_movie_tab_label": MessageLookupByLibrary.simpleMessage("Movie"),
         "home_now_playing_title":
             MessageLookupByLibrary.simpleMessage("Now playing"),
@@ -35,9 +37,40 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Setting"),
         "home_television_tab_label":
             MessageLookupByLibrary.simpleMessage("Television"),
+        "home_title": MessageLookupByLibrary.simpleMessage("Movie"),
         "home_top_rated_title":
             MessageLookupByLibrary.simpleMessage("Top rated"),
         "home_upcoming_title": MessageLookupByLibrary.simpleMessage("Upcoming"),
-        "home_view_all_action": MessageLookupByLibrary.simpleMessage("View all")
+        "home_view_all_action":
+            MessageLookupByLibrary.simpleMessage("View all"),
+        "movie_detail_casts_title":
+            MessageLookupByLibrary.simpleMessage("Casts"),
+        "movie_detail_genre_title":
+            MessageLookupByLibrary.simpleMessage("Genre"),
+        "movie_detail_home_learn_more_action":
+            MessageLookupByLibrary.simpleMessage("Learn more."),
+        "movie_detail_home_learn_more_message":
+            MessageLookupByLibrary.simpleMessage(
+                "Also view more information. "),
+        "movie_detail_less": MessageLookupByLibrary.simpleMessage("Less"),
+        "movie_detail_more_information_title":
+            MessageLookupByLibrary.simpleMessage("More information"),
+        "movie_detail_overview_title":
+            MessageLookupByLibrary.simpleMessage("Overview"),
+        "movie_detail_similar_list_title":
+            MessageLookupByLibrary.simpleMessage("Similar movies"),
+        "movie_detail_subtitles":
+            MessageLookupByLibrary.simpleMessage("Subtitles"),
+        "movie_detail_unavailable_url_message":
+            MessageLookupByLibrary.simpleMessage("The homepage is unavailable"),
+        "movie_detail_view_more":
+            MessageLookupByLibrary.simpleMessage("View more"),
+        "network_image_error": MessageLookupByLibrary.simpleMessage("No image"),
+        "network_image_loaded_url":
+            MessageLookupByLibrary.simpleMessage("Loaded"),
+        "network_image_loading_prefix":
+            MessageLookupByLibrary.simpleMessage("done loading"),
+        "short_hour": MessageLookupByLibrary.simpleMessage("hr"),
+        "short_minute": MessageLookupByLibrary.simpleMessage("min")
       };
 }

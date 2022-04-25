@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SavedFilmPage extends StatelessWidget {
-  static const name = '/saved_film';
+  const SavedFilmPage({Key? key}) : super(key: key);
 
   static Route route() => MaterialPageRoute(
         builder: (context) => const SavedFilmPage(),
       );
 
-  const SavedFilmPage({Key? key}) : super(key: key);
+  static const name = '/saved_film';
 
   @override
   Widget build(BuildContext context) {

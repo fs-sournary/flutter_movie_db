@@ -10,6 +10,6 @@ class GetMovieImagesUseCase extends AsyncUseCase<int, MovieImages> {
   @override
   Future<MovieImages> call(int params) async {
     final response = await _movieRepository.getImages(params);
-    throw MovieImages.fromResponse(response);
+    return response.toModel();
   }
 }

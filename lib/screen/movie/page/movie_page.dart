@@ -1,36 +1,52 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie_db/di/get_it.dart';
-import 'package:flutter_movie_db/generated/l10n.dart';
-import 'package:flutter_movie_db/screen/movie/bloc/movie_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_movie_db/di/get_it.dart';
+import 'package:flutter_movie_db/extension/context_extension.dart';
+import 'package:flutter_movie_db/screen/movie/bloc/movie_bloc.dart';
+import 'package:flutter_movie_db/screen/movie/widget/movie_list_of_category.dart';
+import 'package:flutter_movie_db/screen/movie/widget/movie_now_playing_list.dart';
+import 'package:flutter_movie_db/screen/movie/widget/movie_now_playing_list_title.dart';
+import 'package:flutter_movie_db/screen/movie/widget/movie_popular_list.dart';
+import 'package:flutter_movie_db/screen/movie/widget/movie_popular_list_title.dart';
+import 'package:flutter_movie_db/screen/movie/widget/movie_selected_detail.dart';
 import 'package:flutter_movie_db/screen/movie/widget/movie_sliver_app_bar_delegate.dart';
-import 'package:flutter_movie_db/screen/movie/widget/now_playing_movie_list.dart';
-import 'package:flutter_movie_db/screen/movie/widget/popular_movie_list.dart';
-import 'package:flutter_movie_db/screen/movie/widget/top_rated_movie_list.dart';
-import 'package:flutter_movie_db/screen/movie/widget/upcoming_movie_list.dart';
+import 'package:flutter_movie_db/screen/movie/widget/movie_top_rated_list.dart';
+import 'package:flutter_movie_db/screen/movie/widget/movie_top_rated_list_title.dart';
+import 'package:flutter_movie_db/screen/movie/widget/movie_upcoming_list.dart';
+import 'package:flutter_movie_db/screen/movie/widget/movie_upcoming_list_title.dart';
 
 class MoviePage extends StatelessWidget {
-  static const name = '/movie';
+  const MoviePage({Key? key}) : super(key: key);
 
   static Route route() => MaterialPageRoute(
         builder: (context) => const MoviePage(),
       );
 
-  const MoviePage({Key? key}) : super(key: key);
+  static const name = '/movie';
 
   @override
-  Widget build(BuildContext context) => BlocProvider(
-        create: (context) =>
-            getIt<MovieBloc>()..add(const MovieCategoryFetched()),
-        child: const _View(),
-      );
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) {
+        return getIt<MovieBloc>()
+          ..add(const MovieLatestFetched())
+          ..add(const MovieNowPlayingFetched())
+          ..add(const MovieTopRatedFetched())
+          ..add(const MoviePopularFetched())
+          ..add(const MovieUpcomingFetched());
+      },
+      child: context.isMobile ? const _MobileLayout() : const _LargeLayout(),
+    );
+  }
 }
 
-class _View extends StatelessWidget {
-  const _View({Key? key}) : super(key: key);
+class _MobileLayout extends StatelessWidget {
+  const _MobileLayout({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => CustomScrollView(
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: CustomScrollView(
         slivers: [
           SliverPersistentHeader(
             delegate: MovieSliverAppBarDelegate(
@@ -41,97 +57,48 @@ class _View extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                _buildNowPlayingTitle(),
+                const MovieNowPlayingListTitle(),
                 const NowPlayingMovieList(),
-                _buildPopularTitle(),
-                const PopularMovieList(),
-                _buildTopRatedTitle(),
-                const TopRatedMovieList(),
-                _buildUpComingTitle(),
-                const UpcomingMovieList(),
+                const MoviePopularListTitle(),
+                const MoviePopularList(),
+                const MovieTopRatedListTitle(),
+                const MovieTopRatedList(),
+                const MovieUpcomingListTitle(),
+                const MovieUpcomingList(),
               ],
             ),
           ),
         ],
-      );
-
-  Widget _buildNowPlayingTitle() {
-    return Container(
-      margin: const EdgeInsets.only(left: 16, top: 8, right: 16),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              S.current.home_now_playing_title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-          ),
-          InkWell(
-            onTap: () {},
-            child: Text(S.current.home_view_all_action),
-          ),
-        ],
       ),
     );
   }
+}
 
-  Widget _buildPopularTitle() {
-    return Container(
-      margin: const EdgeInsets.only(left: 16, top: 20, right: 16),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              S.current.home_popular_title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-          ),
-          InkWell(
-            onTap: () {},
-            child: Text(S.current.home_view_all_action),
-          ),
-        ],
-      ),
-    );
-  }
+class _LargeLayout extends StatelessWidget {
+  const _LargeLayout({Key? key}) : super(key: key);
 
-  Widget _buildTopRatedTitle() {
-    return Container(
-      margin: const EdgeInsets.only(left: 16, top: 20, right: 16),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              S.current.home_top_rated_title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Expanded(
+          child: MovieSelectedDetail(),
+          flex: 7,
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          child: BlocBuilder<MovieBloc, MovieState>(
+            buildWhen: (previous, current) =>
+                previous.selectedCategoryType != current.selectedCategoryType,
+            builder: (context, state) {
+              return MovieListOfCategory(type: state.selectedCategoryType);
+            },
           ),
-          InkWell(
-            onTap: () {},
-            child: Text(S.current.home_view_all_action),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildUpComingTitle() {
-    return Container(
-      margin: const EdgeInsets.only(left: 16, top: 20, right: 16),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              S.current.home_upcoming_title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-          ),
-          InkWell(
-            onTap: () {},
-            child: Text(S.current.home_view_all_action),
-          ),
-        ],
-      ),
+          flex: 5,
+        ),
+        const SizedBox(width: 12),
+      ],
     );
   }
 }

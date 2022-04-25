@@ -12,7 +12,7 @@ class GetCategoryMoviesUseCase
   Future<CategoryMovies> call(GetCategoryMovieUseCaseParams params) async {
     final response =
         await _movieRepository.getCategoryMovies(params.category, params.page);
-    return CategoryMovies.fromResponse(response);
+    return response.toModel();
   }
 }
 

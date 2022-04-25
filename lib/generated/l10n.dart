@@ -50,6 +50,76 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `hr`
+  String get short_hour {
+    return Intl.message(
+      'hr',
+      name: 'short_hour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `min`
+  String get short_minute {
+    return Intl.message(
+      'min',
+      name: 'short_minute',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `•`
+  String get dot_separator {
+    return Intl.message(
+      '•',
+      name: 'dot_separator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `done loading`
+  String get network_image_loading_prefix {
+    return Intl.message(
+      'done loading',
+      name: 'network_image_loading_prefix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loaded`
+  String get network_image_loaded_url {
+    return Intl.message(
+      'Loaded',
+      name: 'network_image_loaded_url',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No image`
+  String get network_image_error {
+    return Intl.message(
+      'No image',
+      name: 'network_image_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Movie`
+  String get home_title {
+    return Intl.message(
+      'Movie',
+      name: 'home_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Movie`
   String get home_movie_tab_label {
     return Intl.message(
@@ -95,6 +165,16 @@ class S {
     return Intl.message(
       'Setting',
       name: 'home_setting_tab_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Latest`
+  String get home_latest_title {
+    return Intl.message(
+      'Latest',
+      name: 'home_latest_title',
       desc: '',
       args: [],
     );
@@ -155,6 +235,116 @@ class S {
     return Intl.message(
       'Search...',
       name: 'home_search_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Genre`
+  String get movie_detail_genre_title {
+    return Intl.message(
+      'Genre',
+      name: 'movie_detail_genre_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Also view more information. `
+  String get movie_detail_home_learn_more_message {
+    return Intl.message(
+      'Also view more information. ',
+      name: 'movie_detail_home_learn_more_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Learn more.`
+  String get movie_detail_home_learn_more_action {
+    return Intl.message(
+      'Learn more.',
+      name: 'movie_detail_home_learn_more_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The homepage is unavailable`
+  String get movie_detail_unavailable_url_message {
+    return Intl.message(
+      'The homepage is unavailable',
+      name: 'movie_detail_unavailable_url_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Overview`
+  String get movie_detail_overview_title {
+    return Intl.message(
+      'Overview',
+      name: 'movie_detail_overview_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View more`
+  String get movie_detail_view_more {
+    return Intl.message(
+      'View more',
+      name: 'movie_detail_view_more',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Less`
+  String get movie_detail_less {
+    return Intl.message(
+      'Less',
+      name: 'movie_detail_less',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Similar movies`
+  String get movie_detail_similar_list_title {
+    return Intl.message(
+      'Similar movies',
+      name: 'movie_detail_similar_list_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `More information`
+  String get movie_detail_more_information_title {
+    return Intl.message(
+      'More information',
+      name: 'movie_detail_more_information_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subtitles`
+  String get movie_detail_subtitles {
+    return Intl.message(
+      'Subtitles',
+      name: 'movie_detail_subtitles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Casts`
+  String get movie_detail_casts_title {
+    return Intl.message(
+      'Casts',
+      name: 'movie_detail_casts_title',
       desc: '',
       args: [],
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie_db/common/app_color.dart';
 import 'package:flutter_movie_db/generated/l10n.dart';
+import 'package:flutter_movie_db/widget/brightness_toggle.dart';
 
 class MovieSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   static const _bonusHeight = 80;
@@ -11,68 +11,55 @@ class MovieSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Column(
       children: [
-        _buildAppBar(),
-        _buildSearch(shrinkOffset),
+        _buildAppBar(context),
+        _buildSearch(context, shrinkOffset),
       ],
     );
   }
 
-  Widget _buildAppBar() {
+  Widget _buildAppBar(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Text('Good morning'),
-          SizedBox(height: 4),
-          Text(
-            "Robert",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-          ),
+        children: [
+          const Text('Good morning'),
+          Text("Robert", style: Theme.of(context).textTheme.titleLarge),
         ],
       ),
-      backgroundColor: Colors.white,
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.account_box_rounded, size: 40),
-        ),
-        const SizedBox(width: 12),
+      actions: const [
+        BrightnessToggle(),
+        SizedBox(width: 8),
       ],
     );
   }
 
-  Widget _buildSearch(double shrinkOffset) {
+  Widget _buildSearch(BuildContext context, double shrinkOffset) {
     return Opacity(
       opacity: 1 - shrinkOffset / maxExtent,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      child: Card(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: wildSand,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.grey,
-              spreadRadius: 0.5,
-              blurRadius: 4,
-            ),
-          ],
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
-        child: Center(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: Row(
             children: [
               const Icon(Icons.search),
               Container(
                 margin: const EdgeInsets.only(left: 12),
-                child: Text(S.current.home_search_hint),
+                child: Text(
+                  S.current.home_search_hint,
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
               ),
             ],
           ),

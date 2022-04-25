@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_movie_db/data/storage/storage_data_source.dart';
-import 'package:flutter_movie_db/utils/app_logger.dart';
+import 'package:flutter_movie_db/utils/logger.dart';
 
 class ApiInterceptor extends Interceptor {
-  final StorageDataSource _storageDataSource;
-
   ApiInterceptor(this._storageDataSource);
+
+  final StorageDataSource _storageDataSource;
 
   @override
   void onRequest(
@@ -15,22 +15,22 @@ class ApiInterceptor extends Interceptor {
       options.headers['Authorization'] = userToken;
     }
     options.queryParameters['api_key'] = 'd107661962965284a68ab916fb8bd204';
-    AppLogger.logDebug(
-        'API request [${options.method}] => Path: ${options.path}');
+    AppLogger.logDebug('API request [${options.method}]: ${options.path}');
     super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     AppLogger.logDebug(
-        'API response [${response.statusCode}] [${response..requestOptions.path}] => Data: ${response.data}');
+        'API response [${response.statusCode}]: ${response.requestOptions.path}');
+    AppLogger.logDebug(response.data);
     super.onResponse(response, handler);
   }
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
     AppLogger.logError(
-        'API error [${err.response?.statusCode}] => Path: ${err.requestOptions.path}');
+        'API error [${err.response?.statusCode}]: ${err.requestOptions.path}');
     super.onError(err, handler);
   }
 }

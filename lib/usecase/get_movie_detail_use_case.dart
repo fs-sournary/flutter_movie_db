@@ -10,6 +10,6 @@ class GetMovieDetailUseCase extends AsyncUseCase<int, MovieDetail> {
   @override
   Future<MovieDetail> call(int params) async {
     final response = await _movieRepository.getDetail(params);
-    return MovieDetail.fromResponse(response);
+    return response.toModel();
   }
 }

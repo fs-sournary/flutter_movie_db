@@ -25,9 +25,9 @@ CategoryMoviesResponse _$CategoryMoviesResponseFromJson(
 Map<String, dynamic> _$CategoryMoviesResponseToJson(
         CategoryMoviesResponse instance) =>
     <String, dynamic>{
-      'dates': instance.dates,
+      'dates': instance.dates?.toJson(),
       'page': instance.page,
-      'results': instance.results,
+      'results': instance.results?.map((e) => e.toJson()).toList(),
       'total_pages': instance.totalPages,
       'total_results': instance.totalResults,
     };
